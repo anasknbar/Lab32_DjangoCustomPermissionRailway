@@ -1,7 +1,26 @@
-# Lab26_CarsStorApi
+# Lab32_DjangoCustomPermissionRailway
 
-##  How to use the APP
+##  How to use Railway and Vercel to deply your Django App?
 
-- run the server `python3 manage.py runserver`
-- to show the cars list >> `http://127.0.0.1:8000/api/v1/cars/`, from this endpoint you can view and add new record
-- to get info about a specific record add id (24-43) to the end of the url for example: (`http://127.0.0.1:8000/api/v1/cars/30`), from there you can delete,update a record.
+### 1
+
+- create a **vercel.json** that contain the following conigurations:
+
+      {
+
+        "builds": 
+
+      [{
+      "src": "YOUR-PROJECT-NAME/wsgi.py",
+      "use": "@vercel/python",
+      "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }}],"routes": [{
+      "src": "/(.*)",
+      "dest": "YOUR-PROJECT-NAME/wsgi.py"
+      }]
+
+      }
+
+- add `app = application` in the wsgi.py file
+- for securaty add an .env file to the project and encode the imporatnt variable in the setting.py file
+
+- install the `dotenv` libaray and include the `from dotenv import load_dotenv` in the seetings.py file 

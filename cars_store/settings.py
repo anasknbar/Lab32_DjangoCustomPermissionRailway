@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 import dj_database_url
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from the .env file
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,12 +25,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-rc3caa!8(--z^dv1b3m5o=dm562g*ms@*de25rc4$-s0twkky!'
+SECRET_KEY = os.environ.get('ENV_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app']
+DEBUG = os.environ.get('ENV_DEBUG', 'False').lower() == 'true'
+
+ALLOWED_HOSTS = os.environ.get('ENV_ALLOWED_HOSTS', '').split(',')
+
 
 
 # Application definition
@@ -83,8 +89,8 @@ DATABASES = {
     }
 }
 
-
-DATABASES['default'] = dj_database_url.parse('postgresql://postgres:fmivbrCbrKeRXxbiwvwWHUYGUvGColMI@roundhouse.proxy.rlwy.net:18430/railway')
+RAILWAY_DATABASE_PUBLIC_URL = os.environ.get('ENV_DATABASE_URL')
+DATABASES['default'] = dj_database_url.parse(RAILWAY_DATABASE_PUBLIC_URL)
 
 
 # Password validation
