@@ -36,7 +36,9 @@ ALLOWED_HOSTS = os.environ.get('ENV_ALLOWED_HOSTS', '').split(',')
 
 # this for static file
 STATIC_URL = '/static/'
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 
 
 # Application definition
@@ -63,6 +65,8 @@ MIDDLEWARE = [
     # this for static file (first >> pip install whitenoise)
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 ROOT_URLCONF = 'cars_store.urls'
 
