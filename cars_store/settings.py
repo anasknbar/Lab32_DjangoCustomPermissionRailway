@@ -34,7 +34,7 @@ DEBUG = os.environ.get('ENV_DEBUG', 'False').lower() == 'true'
 ALLOWED_HOSTS = os.environ.get('ENV_ALLOWED_HOSTS', '').split(',')
 
 
-
+# this for static file
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
@@ -60,6 +60,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # this for static file (first >> pip install whitenoise)
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'cars_store.urls'
