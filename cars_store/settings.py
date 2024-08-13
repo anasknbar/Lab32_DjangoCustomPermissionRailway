@@ -37,7 +37,7 @@ ALLOWED_HOSTS = os.environ.get('ENV_ALLOWED_HOSTS', '').split(',')
 # this for static file
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [BASE_DIR, 'static']
+# STATICFILES_DIRS = [BASE_DIR, 'static']
 
 STATIC_ROOT = BASE_DIR / 'staticfiles/'
 # STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
